@@ -1,10 +1,10 @@
 <template>
     <va-navbar
-      color="darkNavbarColors"
       class="mb-1"
+      shadowed
     >
       <va-navbar-item class="logo">
-        로또
+        Lottery Map
       </va-navbar-item>
       <va-navbar-item class="navbar-item-slot">
         <router-link to='/'>
@@ -44,5 +44,10 @@ const darkNavbarColors = computed(() => {
 .logo {
   font-weight: 600;
   font-size: 1.5rem;
+}
+
+.va-custom--success {
+  border-width: 1px;
+  border-style: solid;
 }
 </style>

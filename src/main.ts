@@ -13,12 +13,11 @@ import { createNaverMap } from 'vue3-naver-maps'
 
 const app = createApp(App)
 
-console.log(import.meta.env)
 
 app.use(createPinia());
 app.use(router);
 app.use(createNaverMap, {
-  clientId: ''
+  clientId: import.meta.env.VITE_NAVER_MAP_CLIENT,
 });
 app.use(
   createVuestic({
