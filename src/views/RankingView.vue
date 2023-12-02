@@ -1,11 +1,14 @@
 <template>
   <va-card
-      color="primary"
+      class="ma-4"
+      color="dark"
       gradient
   >
-    <va-card-title>ranking</va-card-title>
+    <va-card-title>
+      <div class="va-h5">로또 가게 랭킹</div>
+    </va-card-title>
     <va-card-content>
-      로또 1등 당첨 순서
+
     </va-card-content>
   </va-card>
 

@@ -45,4 +45,9 @@ const darkNavbarColors = computed(() => {
   font-weight: 600;
   font-size: 1.5rem;
 }
+
+.va-custom--success {
+  border-width: 1px;
+  border-style: solid;
+}
 </style>
