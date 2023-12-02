@@ -1,5 +1,7 @@
 <template>
-  <naver-map-container></naver-map-container>
+  <div class="map pa-5">
+    <naver-map-container></naver-map-container>
+  </div>
 </template>
 
 <script setup lang="ts">

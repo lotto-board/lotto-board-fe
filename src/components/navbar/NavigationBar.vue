@@ -1,10 +1,10 @@
 <template>
     <va-navbar
-      color="darkNavbarColors"
       class="mb-1"
+      shadowed
     >
       <va-navbar-item class="logo">
-        로또
+        Lottery Map
       </va-navbar-item>
       <va-navbar-item class="navbar-item-slot">
         <router-link to='/'>
