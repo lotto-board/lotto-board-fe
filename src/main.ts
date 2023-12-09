@@ -32,7 +32,8 @@ app.use(
           danger: '#e34b4a',
           warning: '#ffc200',
           gray: '#babfc2',
-          dark: '#34495e'
+          dark: '#34495e',
+          white: '#fff'
         }
       },
       components: {

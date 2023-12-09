@@ -10,19 +10,32 @@
     >
       <va-card
           stripe
-          stripe-color="success"
+          :stripe-color="setColorOnlyRanked(index)"
+          gradient
       >
         <va-card-title class="va-h5">
-          <va-badge
-              color="primary">{{ index + 1 }}
+          <va-badge>{{ index + 1 }}
           </va-badge>
         </va-card-title>
         <va-card-content class="va-h5">
-          종로로또
+          {{ record.shopName }}
         </va-card-content>
         <va-card-content>
-          서울특별시 종로구
+          {{ record.address }}
         </va-card-content>
+        <va-card-block class="flex-auto ma-3"
+                       style="align-items: flex-end; flex-direction: row">
+          <VaChip
+              outline
+              v-for="(icon, index) in icons"
+              :key="index"
+              :icon="icon.name"
+              :color="icon.color"
+              class="ml-1 mr-2 mb-3 va-text-bold"
+          >
+            {{ record[icon.key] }}
+          </VaChip>
+        </va-card-block>
       </va-card>
     </div>
   </va-infinite-scroll>
@@ -31,12 +44,24 @@
 <script setup lang="ts">
 import {ref} from 'vue';
 
-const records = ref(Array(50).fill({}));
-
+const records = ref(Array(50).fill({shopName: '종로로또', address: '서울특별시 종로구', first: 5, second: 15}));
+const icons = ref([
+  {name: 'filter_1', key: 'first', color: 'success'},
+  {name: 'filter_2', key: 'second', color: 'warning'}
+])
 const appendRecordsAsync = async () => {
   await new Promise((resolve) => setTimeout(resolve, 1000));
   records.value.push({});
 };
+
+const setColorOnlyRanked = (index: Number) => {
+  if (index === 0) {
+    return 'primary';
+  } else if (index === 1) {
+    return 'secondary';
+  }
+  return 'white';
+}
 
 </script>
 
