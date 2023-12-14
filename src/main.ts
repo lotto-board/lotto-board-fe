@@ -24,21 +24,23 @@ app.use(
     config: {
       colors: {
         variables: {
-          primary: '#00ffa2',
-          button: '#004466',
-          secondary: '#002c85',
-          success: '#40e583',
-          info: '#2c82e0',
-          danger: '#e34b4a',
-          warning: '#ffc200',
-          gray: '#babfc2',
-          dark: '#34495e',
+          primary: '#03045e',
+          secondary: '#0077b6',
+          success: '#00b4d8',
+          info: '#90e0ef',
+          danger: '#d90429',
+          warning: '#ef233c',
+          gray: 'rgb(245,242,242)',
+          dark: '#252A34',
           white: '#fff'
         }
       },
       components: {
-        VaButton: {
-          color: 'button'
+        VaNavbar: {
+          color: 'white'
+        },
+        VaSidebar: {
+          color: 'gray'
         }
       }
     }
