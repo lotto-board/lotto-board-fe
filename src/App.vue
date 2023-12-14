@@ -24,8 +24,10 @@
 
     <template #left>
       <va-sidebar v-model="isSidebarVisible">
-        <router-link :to="path" v-for="{ icon, title, path } in menu" :key="icon">
-          <va-sidebar-item>
+        <router-link :to="path" v-for="{ icon, title, path } in menu" :key="icon"
+                     v-slot="{ isActive }"
+        >
+          <va-sidebar-item :active="isActive">
             <va-sidebar-item-content>
               <va-icon :name="icon"/>
               <va-sidebar-item-title>
