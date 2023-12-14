@@ -1,34 +1,40 @@
 <template>
-  <VaLayout
+  <va-layout
       :top="{ fixed: true, order: 2 }"
       :left="{ fixed: true, absolute: breakpoints.smDown, order: 1, overlay: breakpoints.smDown && isSidebarVisible }"
       @left-overlay-click="isSidebarVisible = false"
   >
     <template #top>
-      <VaNavbar shadowed>
+      <va-navbar shadowed >
         <template #left>
-          <VaButton
+          <va-button
+              color="white"
               :icon="isSidebarVisible ? 'menu_open' : 'menu'"
               @click="isSidebarVisible = !isSidebarVisible"
           >
-          </VaButton>
+          </va-button>
+          <VaNavbarItem
+              class="ml-5 logo">
+            타이틀 미정
+          </VaNavbarItem>
+
         </template>
-      </VaNavbar>
+      </va-navbar>
     </template>
 
     <template #left>
-      <VaSidebar v-model="isSidebarVisible">
+      <va-sidebar v-model="isSidebarVisible">
         <router-link :to="path" v-for="{ icon, title, path } in menu" :key="icon">
-          <VaSidebarItem>
-            <VaSidebarItemContent>
-              <VaIcon :name="icon"/>
-              <VaSidebarItemTitle>
+          <va-sidebar-item>
+            <va-sidebar-item-content>
+              <va-icon :name="icon"/>
+              <va-sidebar-item-title>
                 {{ title }}
-              </VaSidebarItemTitle>
-            </VaSidebarItemContent>
-          </VaSidebarItem>
+              </va-sidebar-item-title>
+            </va-sidebar-item-content>
+          </va-sidebar-item>
         </router-link>
-      </VaSidebar>
+      </va-sidebar>
     </template>
 
     <template #content>
@@ -38,7 +44,7 @@
         </article>
       </main>
     </template>
-  </VaLayout>
+  </va-layout>
 </template>
 
 <script setup lang="ts">
@@ -61,4 +67,8 @@ const menu = [
 </script>
 
 <style scoped>
+.logo {
+  font-weight: 600;
+  font-size: 1.5rem;
+}
 </style>

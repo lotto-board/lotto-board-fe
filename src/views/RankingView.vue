@@ -1,7 +1,7 @@
 <template>
   <va-card
       class="ma-4"
-      color="dark"
+      color="white"
       gradient
   >
     <va-card-title>
@@ -12,7 +12,9 @@
     </va-card-content>
   </va-card>
 
-  <lottery-shop></lottery-shop>
+  <va-card class="ma-4" style="height: 80vh;">
+    <lottery-shop></lottery-shop>
+  </va-card>
 </template>
 
 <script setup lang='ts'>

@@ -50,13 +50,14 @@ const icons = ref([
   {name: 'filter_2', key: 'second', color: 'warning'}
 ])
 const appendRecordsAsync = async () => {
-  await new Promise((resolve) => setTimeout(resolve, 1000));
-  records.value.push({});
+  // TODO:: lotto shop paging api fetch
+  await new Promise((resolve) => setTimeout(resolve, 300));
+  records.value.push({shopName: '종로로또', address: '서울특별시 종로구', first: 5, second: 15});
 };
 
 const setColorOnlyRanked = (index: Number) => {
   if (index === 0) {
-    return 'primary';
+    return 'success';
   } else if (index === 1) {
     return 'secondary';
   }
