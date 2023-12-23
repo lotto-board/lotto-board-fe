@@ -8,7 +8,7 @@ COPY yarn.lock .
 COPY package.json .
 
 # Install dependencies using yarn
-RUN yarn
+RUN yarn install
 
 # Copy the rest of the application code
 COPY . .
