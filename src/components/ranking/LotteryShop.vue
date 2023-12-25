@@ -23,10 +23,10 @@
               </va-badge>
             </va-card-title>
             <va-card-content class="va-h5">
-              {{ record.name }}
+              {{ record.shop_info.name }}
             </va-card-content>
             <va-card-content>
-              {{ record.location }}
+              {{ record.shop_info.address }}
             </va-card-content>
             <va-card-block class="flex-auto ma-3"
                            style="align-items: flex-end; flex-direction: row">
@@ -57,17 +57,19 @@ import {getShop} from "@/api/shop";
 import type {ShopResponse} from "@/type/shop";
 
 
-
+const page = ref(0)
 const records = ref<ShopResponse[]>([]);
 const icons = ref([
-  {name: 'filter_1', key: 'firstPrizeCount', color: 'success'},
-  {name: 'filter_2', key: 'secondPrizeCount', color: 'warning'}
+  {name: 'filter_1', key: 'count_shop_first', color: 'success'},
+  {name: 'filter_2', key: 'count_shop_second', color: 'warning'}
 ])
 const appendRecordsAsync = async () => {
-  const response = await getShop(0, 10);
+  const response = await getShop(page.value, 10);
+  if (!response.length) return
 
   let value = records.value
   value.push(...response)
+  page.value++
 };
 
 const setColorOnlyRanked = (index: Number) => {

@@ -1,6 +1,12 @@
 # lotto-map
 
-This template should help get you started developing with Vue 3 in Vite.
+## 준비사항
+`.env` 파일에 아래의 값을 지정해야합니다.
+```env
+VITE_NAVER_MAP_CLIENT={CLIENT_ID}
+```
+
+
 
 ## Recommended IDE Setup
 
