@@ -1,18 +1,17 @@
 <template>
   <va-card
       class="ma-4"
-      color="white"
+      color="info"
+      text-color="primary"
       gradient
   >
     <va-card-title>
-      <div class="va-h5">로또 가게 랭킹</div>
+      <div class="va-h6">로또 가게 랭킹</div>
     </va-card-title>
-    <va-card-content>
 
-    </va-card-content>
   </va-card>
 
-  <va-card class="ma-4" style="height: 80vh;">
+  <va-card class="ma-4" style="height: 50vh;" color="transparent">
     <lottery-shop></lottery-shop>
   </va-card>
 </template>
