@@ -9,6 +9,7 @@
         :key="index"
     >
       <va-card
+          color="white"
           stripe
           :stripe-color="setColorOnlyRanked(index)"
           gradient
@@ -18,11 +19,11 @@
             horizontal
         >
           <div class="flex-auto">
-            <va-card-title class="va-h5">
+            <va-card-title>
               <va-badge>{{ index + 1 }}
               </va-badge>
             </va-card-title>
-            <va-card-content class="va-h5">
+            <va-card-content class="va-h6">
               {{ record.shop_info.name }}
             </va-card-content>
             <va-card-content>
@@ -94,7 +95,7 @@ onMounted(() => {
 }
 
 #card-container {
-  width: 600px;
+  width: 100%;
 }
 
 @media (max-width: 600px) {
