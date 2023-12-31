@@ -13,6 +13,12 @@
             :initLayers="initLayers"
             @onLoad="onLoadMap($event)"
         >
+          <naver-marker
+            v-for="(shop, index) in shopInfo.slice(0, 100)"
+            :key="index"
+            :latitude="Number(shop.latitude)"
+            :longitude="Number(shop.longitude)"
+          ></naver-marker>
         </naver-map>
       </div>
     </va-card-content>
@@ -21,10 +27,14 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
-import { NaverMap } from 'vue3-naver-maps'
+import type { ShopInfoResponse } from '@/type/shop';
+import { getShopInfo } from '@/api/shop';
+import { onMounted, ref } from 'vue'
+import { NaverMap, NaverMarker } from 'vue3-naver-maps'
 
 const map = ref()
+const shopInfo = ref<ShopInfoResponse[]>([]);
+
 const mapOptions = {
   latitude: 37.51347, // 지도 중앙 위도
   longitude: 127.041722, // 지도 중앙 경도
@@ -32,9 +42,20 @@ const mapOptions = {
 }
 const initLayers = ['BACKGROUND', 'BACKGROUND_DETAIL', 'POI_KOREAN', 'TRANSIT', 'ENGLISH']
 
-const onLoadMap = (mapObject) => {
+const retrieveShopInfo = async () => {
+  const response = await getShopInfo();
+  if (!response.length) return;
+
+  shopInfo.value.push(...response);
+}
+
+const onLoadMap = (mapObject: any) => {
   map.value = mapObject
 }
+
+onMounted(() => {
+  retrieveShopInfo();
+})
 </script>
 
 <style scoped>

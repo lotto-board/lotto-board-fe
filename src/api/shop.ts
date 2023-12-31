@@ -1,5 +1,5 @@
 import axios from 'axios';
-import type {ShopResponse} from "@/type/shop";
+import type { ShopInfoResponse, ShopResponse } from "@/type/shop";
 
 export const getShop = async (page: Number = 0, size: Number = 10): Promise<Array<ShopResponse>> => {
     try {
@@ -10,3 +10,13 @@ export const getShop = async (page: Number = 0, size: Number = 10): Promise<Arra
         throw e;
     }
 };
+
+export const getShopInfo = async (): Promise<Array<ShopInfoResponse>> => {
+    try {
+        const res = await axios.get<Array<ShopInfoResponse>>(`/api/shop/shop-info`);
+        return res.data;
+    } catch (e) {
+        console.log('SHOP INFO 불러오기 실패');
+        throw e;
+    }
+}
