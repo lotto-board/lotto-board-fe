@@ -14,7 +14,7 @@
             @onLoad="onLoadMap($event)"
         >
           <naver-marker
-            v-for="(shop, index) in shopInfo.slice(0, 100)"
+            v-for="(shop, index) in shopInfo"
             :key="index"
             :latitude="Number(shop.latitude)"
             :longitude="Number(shop.longitude)"
@@ -46,7 +46,7 @@
 
 <script setup lang="ts">
 import type { ShopInfoResponse } from '@/type/shop';
-import { getShopInfo } from '@/api/shop';
+import { getTop100ShopInfo } from '@/api/shop';
 import { onMounted, ref } from 'vue'
 import { NaverInfoWindow, NaverMap, NaverMarker } from 'vue3-naver-maps'
 
@@ -55,17 +55,17 @@ const shopInfo = ref<ShopInfoResponse[]>([]);
 
 const marker = ref();
 const selectedShop = ref<ShopInfoResponse>();
-const isOpen = ref(true);
+const isOpen = ref(false);
 
 const mapOptions = {
   latitude: 37.51347, // 지도 중앙 위도
   longitude: 127.041722, // 지도 중앙 경도
-  zoom: 13,
+  zoom: 11,
 }
 const initLayers = ['BACKGROUND', 'BACKGROUND_DETAIL', 'POI_KOREAN', 'TRANSIT', 'ENGLISH']
 
 const retrieveShopInfo = async () => {
-  const response = await getShopInfo();
+  const response = await getTop100ShopInfo();
   if (!response.length) return;
 
   shopInfo.value.push(...response);
