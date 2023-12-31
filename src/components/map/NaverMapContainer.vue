@@ -18,7 +18,25 @@
             :key="index"
             :latitude="Number(shop.latitude)"
             :longitude="Number(shop.longitude)"
+            @click="onClickMarker($event, shop)"
           ></naver-marker>
+          <naver-info-window
+              :marker="marker"
+              :open="isOpen"
+          >
+            <div v-if="selectedShop">
+              <va-card style="width: 350px; height: 250px">
+                <va-card-actions
+                    align="stretch"
+                >
+                  <va-button size="small" @click="closeInfoWindow()">X</va-button>
+                </va-card-actions>
+                <va-card-content class="va-h6">{{ selectedShop.name }}</va-card-content>
+                <va-card-content>전화번호: {{ selectedShop.phone_number }}</va-card-content>
+                <va-card-content>주소: {{ selectedShop.address }}</va-card-content>
+              </va-card>
+            </div>
+          </naver-info-window>
         </naver-map>
       </div>
     </va-card-content>
@@ -30,10 +48,14 @@
 import type { ShopInfoResponse } from '@/type/shop';
 import { getShopInfo } from '@/api/shop';
 import { onMounted, ref } from 'vue'
-import { NaverMap, NaverMarker } from 'vue3-naver-maps'
+import { NaverInfoWindow, NaverMap, NaverMarker } from 'vue3-naver-maps'
 
 const map = ref()
 const shopInfo = ref<ShopInfoResponse[]>([]);
+
+const marker = ref();
+const selectedShop = ref<ShopInfoResponse>();
+const isOpen = ref(true);
 
 const mapOptions = {
   latitude: 37.51347, // 지도 중앙 위도
@@ -52,6 +74,16 @@ const retrieveShopInfo = async () => {
 const onLoadMap = (mapObject: any) => {
   map.value = mapObject
 }
+
+const onClickMarker = (markerObject, shop) => {
+  isOpen.value = true;
+  selectedShop.value = shop;
+  marker.value = markerObject.overlay;
+};
+
+const closeInfoWindow = () => {
+  isOpen.value = false;
+};
 
 onMounted(() => {
   retrieveShopInfo();
@@ -72,5 +104,14 @@ onMounted(() => {
   width: 100%;
   height: 100%;
   border-radius: 10px;
+}
+
+.infowindow-style {
+  color: black;
+  background-color: white;
+  text-align: center;
+  font-weight: 600;
+  font-size: 20px;
+  padding: 6px 8px;
 }
 </style>

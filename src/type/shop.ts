@@ -9,7 +9,7 @@ export interface ShopInfoResponse {
     retailerId: number;
     address: string;
     name: string;
-    phoneNumber: string;
+    phone_number: string;
     latitude: string;
     longitude: string;
 }
