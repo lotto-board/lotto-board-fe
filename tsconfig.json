@@ -12,7 +12,10 @@
     }
   ],
   "compilerOptions": {
-    "verbatimModuleSyntax": true
+    "verbatimModuleSyntax": true,
+    "types": [
+      "vue3-toastify/global"
+    ]
     // Other compiler options...
   }
 }
