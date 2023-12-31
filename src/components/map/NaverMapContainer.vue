@@ -24,18 +24,16 @@
               :marker="marker"
               :open="isOpen"
           >
-            <div v-if="selectedShop">
-              <va-card style="width: 350px; height: 250px">
-                <va-card-actions
-                    align="stretch"
-                >
-                  <va-button size="small" @click="closeInfoWindow()">X</va-button>
-                </va-card-actions>
-                <va-card-content class="va-h6">{{ selectedShop.name }}</va-card-content>
-                <va-card-content>전화번호: {{ selectedShop.phone_number }}</va-card-content>
-                <va-card-content>주소: {{ selectedShop.address }}</va-card-content>
-              </va-card>
-            </div>
+            <va-card style="width: 350px; height: 250px">
+              <va-card-actions
+                  align="stretch"
+              >
+                <va-button size="small" @click="closeInfoWindow()">X</va-button>
+              </va-card-actions>
+              <va-card-content class="va-h6">{{ selectedShop.name }}</va-card-content>
+              <va-card-content>전화번호: {{ selectedShop.phone_number }}</va-card-content>
+              <va-card-content>주소: {{ selectedShop.address }}</va-card-content>
+            </va-card>
           </naver-info-window>
         </naver-map>
       </div>
@@ -55,7 +53,11 @@ const map = ref()
 const shopInfo = ref<ShopInfoResponse[]>([]);
 
 const marker = ref();
-const selectedShop = ref<ShopInfoResponse>();
+const selectedShop = ref<ShopInfoResponse>({
+  name: '',
+  phone_number: '',
+  address: '',
+});
 const isOpen = ref(false);
 const { showLoading, hideLoading } = useLoading();
 
@@ -87,7 +89,7 @@ const closeInfoWindow = () => {
   isOpen.value = false;
 };
 
-onMounted(async() => {
+onMounted(async () => {
   showLoading();
   await retrieveShopInfo();
   hideLoading();
