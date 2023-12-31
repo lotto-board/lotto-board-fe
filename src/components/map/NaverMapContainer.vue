@@ -1,7 +1,7 @@
 <template>
   <va-card class="map-card">
     <va-card-title>
-      <h6  class="va-h5">
+      <h6 class="va-h5">
         🎱당신 주위의 로또 🎱
       </h6>
     </va-card-title>
@@ -14,11 +14,11 @@
             @onLoad="onLoadMap($event)"
         >
           <naver-marker
-            v-for="(shop, index) in shopInfo"
-            :key="index"
-            :latitude="Number(shop.latitude)"
-            :longitude="Number(shop.longitude)"
-            @click="onClickMarker($event, shop)"
+              v-for="(shop, index) in shopInfo"
+              :key="index"
+              :latitude="Number(shop.latitude)"
+              :longitude="Number(shop.longitude)"
+              @click="onClickMarker($event, shop)"
           ></naver-marker>
           <naver-info-window
               :marker="marker"
@@ -47,8 +47,9 @@
 <script setup lang="ts">
 import type { ShopInfoResponse } from '@/type/shop';
 import { getTop100ShopInfo } from '@/api/shop';
-import { onMounted, ref } from 'vue'
-import { NaverInfoWindow, NaverMap, NaverMarker } from 'vue3-naver-maps'
+import { onMounted, ref } from 'vue';
+import { NaverInfoWindow, NaverMap, NaverMarker } from 'vue3-naver-maps';
+import { useLoading } from "@/components/loading/useLoading";
 
 const map = ref()
 const shopInfo = ref<ShopInfoResponse[]>([]);
@@ -56,6 +57,7 @@ const shopInfo = ref<ShopInfoResponse[]>([]);
 const marker = ref();
 const selectedShop = ref<ShopInfoResponse>();
 const isOpen = ref(false);
+const { showLoading, hideLoading } = useLoading();
 
 const mapOptions = {
   latitude: 37.51347, // 지도 중앙 위도
@@ -85,8 +87,10 @@ const closeInfoWindow = () => {
   isOpen.value = false;
 };
 
-onMounted(() => {
-  retrieveShopInfo();
+onMounted(async() => {
+  showLoading();
+  await retrieveShopInfo();
+  hideLoading();
 })
 </script>
 
@@ -104,14 +108,5 @@ onMounted(() => {
   width: 100%;
   height: 100%;
   border-radius: 10px;
-}
-
-.infowindow-style {
-  color: black;
-  background-color: white;
-  text-align: center;
-  font-weight: 600;
-  font-size: 20px;
-  padding: 6px 8px;
 }
 </style>
