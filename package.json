@@ -15,8 +15,12 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
+    "@types/d3": "^7.4.3",
+    "@types/topojson": "^3.2.6",
     "create-vite": "^5.1.0",
+    "d3": "^7.8.5",
     "pinia": "^2.1.7",
+    "topojson": "^3.0.2",
     "vue": "^3.3.4",
     "vue-router": "^4.2.5",
     "vue3-naver-maps": "^4.2.0",
