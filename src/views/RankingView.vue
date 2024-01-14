@@ -27,7 +27,7 @@
 </template>
 
 <script setup lang='ts'>
-import LotteryShop from '../components/ranking/LotteryShop.vue'
+import LotteryShop from '@/components/ranking/LotteryShop.vue'
 import KoreaTopology from "@/components/map/KoreaTopology.vue";
 
 </script>

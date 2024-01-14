@@ -1,8 +1,10 @@
 import * as d3 from 'd3';
 import * as topojson from "topojson";
 import type {Ref, UnwrapRef} from "vue";
+import ObjectUtil from '@/utils/objectUtil.js';
 
-const topologyConstants = {
+const topologyConstants = ObjectUtil.getAndFreeze({
+    jsonFilePath: '/2018_korea_topo_simple.json',
     koreanProvinces: {
         "서울": "seoul",
         "부산": "busan",
@@ -29,7 +31,7 @@ const topologyConstants = {
         "#78aecb", "#89c4f5", "#9dc9f5", "#beddff",
         "#6daacc"  // 추가된 컬러
     ]
-}
+})
 
 export const drawTopology = (mapContainer: Ref<UnwrapRef<HTMLElement | null>>, locationCounts: Array<Object>) => {
     // D3 코드 실행
@@ -106,13 +108,10 @@ export const drawTopology = (mapContainer: Ref<UnwrapRef<HTMLElement | null>>, l
         }
     }
 
-    console.log(provinceCount)
-
-
     let index = 0
 
     // TopoJSON 파일 로딩 및 토폴로지 맵 생성
-    d3.json('/2018_korea_topo_simple.json')
+    d3.json(topologyConstants.jsonFilePath)
         .then((korea: any) => {
             const feature = topojson.feature(korea, korea.objects.skorea_provinces_2018_geo);
             const features = feature.features;
@@ -157,7 +156,6 @@ export const drawTopology = (mapContainer: Ref<UnwrapRef<HTMLElement | null>>, l
                 })
                 .attr("fill", (d) => topologyConstants.blueTones[index++])
                 .style('stroke', 'transparent')
-                // .style('opacity', (d) => getRandomValue(d))
                 .on('mouseover', mouseOver)
                 .on('mouseleave', mouseLeave)
                 .on('mousemove', mouseMove)
