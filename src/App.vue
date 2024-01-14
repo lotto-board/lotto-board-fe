@@ -5,7 +5,7 @@
       @left-overlay-click="isSidebarVisible = false"
   >
     <template #top>
-      <va-navbar shadowed >
+      <va-navbar shadowed class="h-1">
         <template #left>
           <va-button
               color="white"
@@ -13,11 +13,21 @@
               @click="isSidebarVisible = !isSidebarVisible"
           >
           </va-button>
-          <VaNavbarItem
-              class="ml-5 logo">
-            타이틀 미정
-          </VaNavbarItem>
+          <va-navbar-item
+              class="ml-3 logo-container">
+            <va-image class="logo" :src="navBarLogo" fit="contain"/>
+          </va-navbar-item>
 
+        </template>
+
+
+        <template #right>
+          <va-navbar-item class="hidden sm:block">
+            Dashboard
+          </va-navbar-item>
+          <va-navbar-item class="hidden sm:block">
+            Reports
+          </va-navbar-item>
         </template>
       </va-navbar>
     </template>
@@ -53,6 +63,7 @@
 import {RouterView} from 'vue-router'
 import {ref, watchEffect} from 'vue'
 import {useBreakpoint} from 'vuestic-ui'
+import navBarLogo from './assets/navbar_logo.png'
 
 const breakpoints = useBreakpoint()
 const isSidebarVisible = ref(breakpoints.mdUp)
@@ -69,8 +80,15 @@ const menu = [
 </script>
 
 <style scoped>
-.logo {
+.logo-container {
   font-weight: 600;
   font-size: 1.5rem;
+  width: 120px; height: 48px;
 }
+
+.logo {
+  width: 100%;
+  height: 100%;
+}
+
 </style>
