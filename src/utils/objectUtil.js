@@ -20,4 +20,4 @@ class ObjectUtil {
 
 
 
-export default ObjectUtil;
+export default ObjectUtil

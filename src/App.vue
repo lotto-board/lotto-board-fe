@@ -22,12 +22,12 @@
 
 
         <template #right>
-          <VaNavbarItem class="hidden sm:block">
+          <va-navbar-item class="hidden sm:block">
             Dashboard
-          </VaNavbarItem>
-          <VaNavbarItem class="hidden sm:block">
+          </va-navbar-item>
+          <va-navbar-item class="hidden sm:block">
             Reports
-          </VaNavbarItem>
+          </va-navbar-item>
         </template>
       </va-navbar>
     </template>
