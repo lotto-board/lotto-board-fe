@@ -20,9 +20,9 @@ const router = createRouter({
       component: () => import('@/views/MapView.vue')
     },
     {
-      path: '/number-ranking',
-      name: 'number-ranking',
-      component: () => import('@/views/NumberRankingView.vue')
+      path: '/statistics',
+      name: 'statistics',
+      component: () => import('@/views/StatisticsView.vue')
     }
   ]
 })

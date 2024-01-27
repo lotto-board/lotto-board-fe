@@ -65,7 +65,7 @@ watchEffect(() => {
 const menu = [
   {icon: 'map', title: '로또지도', path: '/'},
   {icon: 'list_alt', title: '로또랭킹', path: '/ranking'},
-  {icon: 'emoji_events', title: '로또번호랭킹', path: '/number-ranking'},
+  {icon: 'insert_chart_outlined', title: '로또통계', path: '/number-ranking'},
 ]
 </script>
 
