@@ -1,6 +1,6 @@
 <template>
   <div class="grid grid-cols-12 gap-6">
-    <va-card class="col-span-12 lg:col-span-6" v-if="recentPrizeLineChartData">
+    <va-card v-if="recentPrizeLineChartData" class="col-span-12 lg:col-span-6">
       <va-card-title>
         <h1>최근 당첨금액 추이</h1>
       </va-card-title>
@@ -9,7 +9,7 @@
       </va-card-content>
     </va-card>
 
-    <va-card class="col-span-12 sm:col-span-6 lg:col-span-3" v-if="lotteryStatPieChartData">
+    <va-card v-if="lotteryStatPieChartData" class="col-span-12 sm:col-span-6 lg:col-span-3">
       <va-card-title>
         <h1>숫자 구간별 확률 차트</h1>
       </va-card-title>
@@ -17,7 +17,7 @@
         <lotto-chart :data="lotteryStatPieChartData.value" type="pie"></lotto-chart>
       </va-card-content>
     </va-card>
-    <va-card class="col-span-12 sm:col-span-6 lg:col-span-3" v-if="lotteryBonusStatDonutChartData">
+    <va-card v-if="lotteryBonusStatDonutChartData" class="col-span-12 sm:col-span-6 lg:col-span-3">
       <va-card-title>
         <h1>보너스 숫자 당첨 확률 차트</h1>
       </va-card-title>
