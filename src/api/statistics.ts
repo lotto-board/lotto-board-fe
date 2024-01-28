@@ -1,5 +1,5 @@
 import axios from 'axios';
-import type { LotteryNumberStatistics, LotteryWinningPrize } from '@/type/statistics';
+import type { LotteryNumberStatistics, LotteryWinningPrize, NumberRanking } from '@/type/statistics';
 import { toast } from 'vue3-toastify';
 
 export const getStatistics = async(): Promise<LotteryNumberStatistics> => {
@@ -31,3 +31,13 @@ export const getRecentPrize = async(): Promise<Array<LotteryWinningPrize>> => {
     throw e;
   }
 };
+
+export const getNumberRanking = async(): Promise<Array<NumberRanking>> => {
+  try {
+    const res = await axios.get<Array<NumberRanking>>(`/api/lotto-result/number-rankings`);
+    return res.data;
+  } catch (e) {
+    toast.error('로또 랭킹 불러오기 실패!');
+    throw e;
+  }
+}

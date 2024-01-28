@@ -1,5 +1,5 @@
 <template>
-  <div class="grid grid-cols-12 gap-6">
+  <div class="grid grid-cols-12 gap-6 p-6">
     <va-card v-if="recentPrizeLineChartData" class="col-span-12 lg:col-span-6">
       <va-card-title>
         <h1>최근 당첨금액 추이</h1>
