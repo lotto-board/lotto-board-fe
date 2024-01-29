@@ -2,7 +2,7 @@
   <va-card class="map-card">
     <va-card-title>
       <h6 class="va-h5">
-        🎱당신 주위의 로또 🎱
+        🎱 당신 주위의 로또 🎱
       </h6>
     </va-card-title>
     <va-card-content>

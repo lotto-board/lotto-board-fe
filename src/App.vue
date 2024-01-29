@@ -65,10 +65,13 @@ watchEffect(() => {
 const menu = [
   {icon: 'map', title: '로또지도', path: '/'},
   {icon: 'list_alt', title: '로또랭킹', path: '/ranking'},
+  {icon: 'insert_chart_outlined', title: '로또통계', path: '/statistics'},
 ]
 </script>
 
-<style scoped>
+<style lang="scss">
+@import "scss/main.scss";
+
 .logo {
   font-weight: 600;
   font-size: 1.5rem;
