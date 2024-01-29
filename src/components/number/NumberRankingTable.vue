@@ -1,10 +1,10 @@
 <template>
   <div class="pt-6 pr-6 pl-6">
-    <va-card v-if="rankingData">
-      <va-card-title>로또 당첨 번호</va-card-title>
+    <va-card v-if="props.data">
+      <va-card-title>{{ props.title }}</va-card-title>
       <va-card-content calss="overflow-auto">
         <va-data-table
-          :items="rankingData"
+          :items="props.data"
           :columns="column"
           :wrapper-size="400"
           virtual-scroller
@@ -17,11 +17,9 @@
 </template>
 
 <script setup lang="ts">
-import { onBeforeMount, ref } from 'vue';
-import { getNumberRanking } from '@/api/statistics';
+import { ref } from 'vue';
 import type { NumberRanking } from '@/type/statistics';
 
-const rankingData = ref<NumberRanking[]>();
 const column = ref([
   {
     key: "rank",
@@ -37,15 +35,10 @@ const column = ref([
   }
 ]);
 
-const retrieveRanking = async() => {
-  const response = await getNumberRanking();
-  if (!response) return;
-  rankingData.value = response;
-};
-
-onBeforeMount(async () => {
-  await retrieveRanking();
-});
+const props = defineProps<{
+  data: NumberRanking[],
+  title: string,
+}>();
 
 </script>
 

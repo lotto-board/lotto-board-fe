@@ -41,3 +41,13 @@ export const getNumberRanking = async(): Promise<Array<NumberRanking>> => {
     throw e;
   }
 }
+
+export const getBonusNumberRanking = async(): Promise<Array<NumberRanking>> => {
+  try {
+    const res = await axios.get<Array<NumberRanking>>(`/api/lotto-result/bonus-number`);
+    return res.data;
+  } catch (e) {
+    toast.error('로또 보너스 번호 랭킹 불러오기 실패!');
+    throw e;
+  }
+}
